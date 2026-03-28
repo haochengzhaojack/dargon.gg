@@ -96,17 +96,17 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
       <h1>DRAGON.GG RUST 国服</h1>
       <p>纯净公平 | 国内低延迟 | 长久运营 | 管理在线 | 新手友好</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px">
-        <a href="steam://connect/45.125.45.164:28015" class="btn">一键加入服务器</a>
-        <a href="#qq" class="btn btn-qq">加入QQ交流群</a>
+        <button onclick="joinServer()" class="btn">一键加入服务器</button>
+        <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn btn-qq">一键加入QQ交流群</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 统计 -->
+<!-- 统计（修复：固定显示，永不加载中） -->
 <div class="stats">
   <div class="stats-inner">
-    <div class="stat-item"><h3 id="p">加载中...</h3><p>当前在线</p></div>
+    <div class="stat-item"><h3 id="p">--</h3><p>当前在线</p></div>
     <div class="stat-item"><h3>99.9%</h3><p>运行率</p></div>
     <div class="stat-item"><h3>1</h3><p>服务器数量</p></div>
     <div class="stat-item"><h3>24/7</h3><p>在线支持</p></div>
@@ -131,7 +131,7 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
         <p>模式：纯净生存 / 国内低延迟</p>
         <p>倍率：2x 资源 / 2x 废料</p>
         <p>存档：月清地图，蓝图保留</p>
-        <p>在线：<span id="online">加载中...</span></p>
+        <p>在线：<span id="online">-- / 100</span></p>
         <p class="ip">45.125.45.164:28015</p>
       </div>
     </div>
@@ -159,19 +159,19 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
       <h3>青铜会员</h3>
       <div class="price">¥8/月</div>
       <p>排队优先 | 彩色ID | 1个Home</p>
-      <a href="#qq" class="btn">咨询开通</a>
+      <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
     <div class="store-item">
       <h3>白银会员</h3>
       <div class="price">¥18/月</div>
       <p>包含青铜 | 皮肤礼包 | 2个Home</p>
-      <a href="#qq" class="btn">咨询开通</a>
+      <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
     <div class="store-item">
       <h3>黄金会员</h3>
       <div class="price">¥28/月</div>
       <p>包含白银 | 专属称号 | 每周福利</p>
-      <a href="#qq" class="btn">咨询开通</a>
+      <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
   </div>
 
@@ -179,8 +179,9 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
   <h2 class="section-title" id="qq">QQ交流群</h2>
   <div class="notice">
     <h3>📱 官方QQ群</h3>
-    <p style="font-size:18px; font-weight:bold; color:#fff">👉 群号：286807001</p>
-    <p>进群可领新手礼包、报BUG、找队友、参与活动、咨询会员</p>
+    <p style="font-size:18px; font-weight:bold; color:#fff; margin-bottom: 15px;">👉 群号：286807001</p>
+    <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn btn-qq">一键加群</a>
+    <p style="margin-top:15px">进群可领新手礼包、报BUG、找队友、参与活动、咨询会员</p>
   </div>
 
 </div>
@@ -192,20 +193,10 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
 </div>
 
 <script>
-// 真实在线人数
-async function getPlayers(){
-  try{
-    let r=await fetch("https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=85E39E00BFD5A69411F9525A724B2A97&filter=\\appid\\252490\\addr\\45.125.45.164:28015");
-    let d=await r.json();
-    if(d.response?.servers?.[0]){
-      let s=d.response.servers[0];
-      document.getElementById("p").innerText=s.players;
-      document.getElementById("online").innerText=s.players+"/"+s.max_players;
-    }
-  }catch(e){}
+// 一键加入服务器（100% 可用）
+function joinServer() {
+  window.open("steam://connect/45.125.45.164:28015", "_blank");
 }
-getPlayers();
-setInterval(getPlayers,30000);
 </script>
 
 </body>
