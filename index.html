@@ -203,7 +203,7 @@ function joinServer() {
 
 async function getPlayers(){
   try{
-    let r = await fetch("https://d1-template.492465984.workers.dev/");
+    let r = await fetch("https://e5d656af-d1-template.492465984.workers.dev/");
     let d = await r.json(); // 解析 JSON 数据（关键缺失行）
     if(d.response?.servers?.[0]){
       let s = d.response.servers[0];
