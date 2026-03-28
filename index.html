@@ -201,11 +201,10 @@ function joinServer() {
   window.open("steam://connect/45.125.45.164:28015", "_blank");
 }
 
-// 真实在线人数
 async function getPlayers(){
   try{
-    let r=await fetch("https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=85E39E00BFD5A69411F9525A724B2A97&filter=\\appid\\252490\\addr\\45.125.45.164:28015");
-    let d=await r.json();
+    let r=await fetch("https://d1-template.492465984.workers.dev/");
+    let d=await r.json(); // 
     if(d.response?.servers?.[0]){
       let s=d.response.servers[0];
       document.getElementById("p").innerText=s.players;
