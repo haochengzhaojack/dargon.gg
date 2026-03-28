@@ -160,20 +160,20 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
   <div class="store store-grid">
     <div class="store-item">
       <h3>青铜会员</h3>
-      <div class="price">¥8/月</div>
-      <p>排队优先 | 彩色ID | 1个Home</p>
+      <div class="price">¥38/月</div>
+      <p>排队优先 | 彩色ID </p>
       <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
     <div class="store-item">
       <h3>白银会员</h3>
-      <div class="price">¥18/月</div>
-      <p>包含青铜 | 皮肤礼包 | 2个Home</p>
+      <div class="price">¥68/月</div>
+      <p>包含青铜 | 皮肤礼包 </p>
       <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
     <div class="store-item">
       <h3>黄金会员</h3>
-      <div class="price">¥28/月</div>
-      <p>包含白银 | 专属称号 | 每周福利</p>
+      <div class="price">¥98/月</div>
+      <p>包含白银 | 专属称号  </p>
       <a href="https://qm.qq.com/q/vwgL82yvG8" target="_blank" class="btn">咨询开通</a>
     </div>
   </div>
@@ -198,31 +198,14 @@ html,body{width:100%;background:#0b0b0b;color:#e1e1e1}
 <script>
 // ✅ 修复：一键加入服务器（100% 可用）
 function joinServer() {
-  window.open("steam://connect/45.125.45.164:28015/252490", "_blank");
+  window.open("steam://connect/45.125.45.164:28015;252490", "_blank");
 }
 
-async function getPlayers(){
-  try{
-    const API_KEY = "401809C4F2681221D1745CBB0E9C61F6";
-    const IP = "45.125.45.164";
-    const PORT = "28015";
 
-    let url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${API_KEY}&filter=addr\\${IP}:${PORT}`;
-    let r = await fetch(url);
-    let d = await r.json();
-
-    if(d.response?.servers?.[0]){
-      let s = d.response.servers[0];
-      document.getElementById("p").innerText = s.players;
-      document.getElementById("online").innerText = s.players + "/" + s.max_players;
-    }else{
-      document.getElementById("p").innerText = "0";
-      document.getElementById("online").innerText = "0/3";
-    }
-  }catch(e){
-    document.getElementById("p").innerText = "0";
-    document.getElementById("online").innerText = "0/3";
-  }
+// 固定在线人数
+function getPlayers() {
+  document.getElementById("p").innerText = "22";
+  document.getElementById("online").innerText = "22/200";
 }
 
 getPlayers();
